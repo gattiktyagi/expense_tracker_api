@@ -8,8 +8,8 @@ const startServer = ()=>{
     ┌─────────────────────────────────────┐
     │     Server Online                   │
     ├─────────────────────────────────────┤
-    │  Port   : PORT                      │
-    │  URL    : localhost:PORT            │
+    │  Port   : ${PORT}                      │
+    │  URL    : localhost:${PORT}            │
     │  Status : \x1b[32mREADY\x1b[0m                     │
     └─────────────────────────────────────┘
     `);
