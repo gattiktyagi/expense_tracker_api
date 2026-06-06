@@ -1,19 +1,21 @@
-const app = require("./src/app");
 require("dotenv").config();
+const app = require("./src/app");
+const pool = require("./src/config/db");
+
 const PORT = process.env.PORT || 3000;
 
-const startServer = () => {
-  app.listen(PORT, () => {
-    console.log(`
-    ┌─────────────────────────────────────┐
-    │     Server Online                   │
-    ├─────────────────────────────────────┤
-    │  Port   : ${PORT}                      │
-    │  URL    : localhost:${PORT}            │
-    │  Status : \x1b[32mREADY\x1b[0m                     │
-    └─────────────────────────────────────┘
-    `);
-  });
+const startServer = async () => {
+  try {
+    await pool.query("SELECT NOW()");
+    console.log("Database connected successfully.");
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}.`);
+    });
+  } catch (error) {
+    console.error("Critical: Database connection failed.", error.message);
+    process.exit(1);
+  }
 };
 
 startServer();
