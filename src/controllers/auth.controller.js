@@ -22,4 +22,19 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { signup };
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const result = await authService.login(email, password);
+    return res.status(200).json({
+      message: "Login successful",
+      token: result.token,
+      user: result.user,
+    });
+  } catch (error) {
+    return res.status(401).json({ message: error.message });
+  }
+};
+
+module.exports = { signup, login };
