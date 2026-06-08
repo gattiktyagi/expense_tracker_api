@@ -9,7 +9,12 @@ const fetchExpenses = async (userId) => {
   }
 };
 
-const addExpense = async (expenseValue, description,transactionType, userId) => {
+const addExpense = async (
+  expenseValue,
+  description,
+  transactionType,
+  userId,
+) => {
   try {
     const expense = await expenseRepo.addExpense(
       expenseValue,
@@ -23,4 +28,13 @@ const addExpense = async (expenseValue, description,transactionType, userId) => 
   }
 };
 
-module.exports = { fetchExpenses, addExpense };
+const deleteExpense = async (id, userId) => {
+  try {
+    const deletedExpense = await expenseRepo.deleteExpense(id, userId);
+    return deletedExpense;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+module.exports = { fetchExpenses, addExpense, deleteExpense };
