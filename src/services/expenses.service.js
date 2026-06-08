@@ -1,4 +1,4 @@
-const expenseRepo = require("../repositories/expense.repository");
+const expenseRepo = require("../repositories/expenses.repository");
 
 const fetchExpenses = async (userId) => {
   try {
@@ -33,7 +33,7 @@ const deleteExpense = async (id, userId) => {
     const deletedExpense = await expenseRepo.deleteExpense(id, userId);
     return deletedExpense;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 };
 
