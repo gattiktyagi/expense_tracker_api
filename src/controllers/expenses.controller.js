@@ -42,7 +42,7 @@ const deleteExpense = async (req, res) => {
     if (!id) {
       return res
         .status(400)
-        .json({ message: "Task ID required to delete Task" });
+        .json({ message: "Expense ID required to delete Expense" });
     }
     const deletedExpense = await expenseService.deleteExpense(id, userId);
     if (!deletedExpense) {
@@ -50,14 +50,33 @@ const deleteExpense = async (req, res) => {
     }
     return res
       .status(200)
-      .json({ message: "Task deleted successfully", deletedExpense });
+      .json({ message: "Expense deleted successfully", deletedExpense });
   } catch (error) {
-    return res.status(400).json({ message: "Unable not delete task", error });
+    return res
+      .status(400)
+      .json({ message: "Unable not delete Expense", error: error.message });
   }
 };
 
 const getExpenseById = async (req, res) => {
-  return res.json({ message: "getExpenseById" });
+  const id = req.params.id;
+  const userId = req.user.userId;
+  if (!id) {
+    return res.status(400).json({ message: "Id required to fetch expense" });
+  }
+  try {
+    const expense = await expenseService.getExpenseById(id, userId);
+    if (!expense) {
+      return res.status(404).json({ message: "No such expense Exist" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Expense fetched successfully", expense });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: "Unable to fetch expense", error: error.message });
+  }
 };
 
 module.exports = { fetchExpenses, addExpense, deleteExpense, getExpenseById };

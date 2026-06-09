@@ -37,4 +37,13 @@ const deleteExpense = async (id, userId) => {
   }
 };
 
-module.exports = { fetchExpenses, addExpense, deleteExpense };
+const getExpenseById = async (id, userId) => {
+  try {
+    const expense = await expenseRepo.fetchExpenseById(id, userId);
+    return expense;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+module.exports = { fetchExpenses, addExpense, deleteExpense, getExpenseById };

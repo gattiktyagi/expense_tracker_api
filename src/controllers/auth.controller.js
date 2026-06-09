@@ -1,5 +1,4 @@
 const authService = require("../services/auth.service");
-const bcrypt = require("bcrypt");
 
 const signup = async (req, res) => {
   try {

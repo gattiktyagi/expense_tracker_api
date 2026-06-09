@@ -9,6 +9,15 @@ const fetchExpenses = async (userId) => {
     throw new Error("Database Error fetching expenses");
   }
 };
+const fetchExpenseById = async (id, userId) => {
+  try {
+    const query = "SELECT * FROM expenses where id=$1 and user_id=$2";
+    const result = await pool.query(query, [id, userId]);
+    return result.rows[0];
+  } catch (error) {
+    throw new Error("Database Error fetching expense");
+  }
+};
 const addExpense = async (
   expenseValue,
   description,
@@ -40,4 +49,4 @@ const deleteExpense = async (id, userId) => {
   }
 };
 
-module.exports = { fetchExpenses, addExpense, deleteExpense };
+module.exports = { fetchExpenses, addExpense, deleteExpense, fetchExpenseById };
