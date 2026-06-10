@@ -1,4 +1,4 @@
-const expenseRepo = require("../repositories/expenses.repository");
+const expenseRepo = require("./expenses.repository");
 
 const fetchExpenses = async (userId) => {
   try {

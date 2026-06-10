@@ -1,6 +1,6 @@
 const express = require("express");
-const authRoutes = require("./routes/auth.routes");
-const expenseRoutes = require("./routes/expenses.routes");
+const authRoutes = require("./auth/auth.routes");
+const expenseRoutes = require("./expenses/expenses.routes");
 
 const app = express();
 
