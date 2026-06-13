@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt");
 const userRepository = require("../user/user.repository");
 const jwt = require("jsonwebtoken");
+const AppError = require("../utils/AppError");
 
 const signup = async (user, email, password) => {
   const existingUser = await userRepository.findByEmail(email);
   if (existingUser) {
-    throw new Error("Email already registered");
+    throw new AppError("Email already registered", 409);
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
@@ -16,11 +17,11 @@ const signup = async (user, email, password) => {
 const login = async (email, password) => {
   const user = await userRepository.findByEmail(email);
   if (!user) {
-    throw new Error("Invalid Credentials");
+    throw new AppError("Invalid Credentials", 401);
   }
   const isMatch = await bcrypt.compare(password, user.password_hash);
   if (!isMatch) {
-    throw new Error("Invalid Credentials");
+    throw new AppError("Invalid Credentials",401);
   }
   const token = jwt.sign({ userId: user.id, email }, process.env.JWT_SECRET, {
     expiresIn: process.env.TOKEN_EXPIRES_IN || "1h",
