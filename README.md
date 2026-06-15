@@ -36,8 +36,6 @@ npm install
 
 ### 3. Configure environment variables
 
-## Environment Variables
-
 Create a `.env` file in the project root:
 
 ```env
@@ -50,7 +48,6 @@ DB_NAME=database_name
 JWT_SECRET=your_secret_key
 TOKEN_EXPIRES_IN=1d
 ```
-Create a `.env` file and add the values from the section above.
 
 ### 4. Run database setup
 Make sure PostgreSQL is running and the required tables exist.
