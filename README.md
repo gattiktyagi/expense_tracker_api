@@ -35,6 +35,21 @@ npm install
 ```
 
 ### 3. Configure environment variables
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PORT=5432
+DB_PASS=password
+DB_NAME=database_name
+JWT_SECRET=your_secret_key
+TOKEN_EXPIRES_IN=1d
+```
 Create a `.env` file and add the values from the section above.
 
 ### 4. Run database setup
@@ -331,21 +346,6 @@ Example cases handled by the global error middleware:
 - Database errors
 - Resource not found
 - Unexpected server errors
-
-## Environment Variables
-
-Create a `.env` file in the project root:
-
-```env
-PORT=3000
-DB_HOST=localhost
-DB_USER=postgres
-DB_PORT=5432
-DB_PASS=password
-DB_NAME=database_name
-JWT_SECRET=your_secret_key
-TOKEN_EXPIRES_IN=1d
-```
 
 ## Database Notes
 
