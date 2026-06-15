@@ -47,6 +47,7 @@ DB_PASS=password
 DB_NAME=database_name
 JWT_SECRET=your_secret_key
 TOKEN_EXPIRES_IN=1d
+NODE_ENV=dev
 ```
 
 ### 4. Run database setup
