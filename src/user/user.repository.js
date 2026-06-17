@@ -22,4 +22,9 @@ const createUser = async (username, email, hashedPassword) => {
   return result.rows[0];
 };
 
-module.exports = { findByEmail, createUser, findByUser };
+const deleteUser = async (userId) => {
+  const result = await pool.query("Delete from users where id=$1 returning *", [userId]);
+  return result.rows[0];
+};
+
+module.exports = { findByEmail, createUser, findByUser, deleteUser };

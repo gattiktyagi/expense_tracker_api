@@ -1,6 +1,7 @@
 const express = require("express");
 const authRoutes = require("./auth/auth.routes");
 const expenseRoutes = require("./expenses/expenses.routes");
+const userRoutes = require("./user/user.routes");
 const cors = require("cors");
 const errorHandler = require("./middlewares/error.middleware");
 
@@ -15,8 +16,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
+app.use("/api/user", userRoutes);
 
 app.use(errorHandler);
 

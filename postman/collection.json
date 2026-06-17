@@ -1,0 +1,389 @@
+{
+  "info": {
+    "_postman_id": "fa279b23-f44e-46a0-b496-0e7f36f40789",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54867707",
+    "_collection_link": "https://go.postman.co/collection/54867707-fa279b23-f44e-46a0-b496-0e7f36f40789?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "http://localhost:3000/api/auth/register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"user\": \"Test\", \"email\": \"test@example.com\", \"password\": \"securepassword123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        },
+        "description": "Generated from cURL: curl --request POST \\\n  --url http://localhost:3000/api/auth/register \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"username\": \"Gattik\", \"email\": \"gattik@example.com\", \"password\": \"securepassword123\"}'"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/auth/login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const json = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"auto_jwt_token\", json.token);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"test@example.com\", \"password\": \"securepassword123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        },
+        "description": "Generated from cURL: curl --request POST \\\n  --url http://localhost:3000/api/auth/login \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"email\": \"gattik@example.com\", \"password\": \"securepassword123\"}'\n"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/expenses",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const json = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"expenseId\", json.expense.id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"expenseValue\": 15000, \"description\": \"Office desk setup supplies\", \"transactionType\": \"debit\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/expenses",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "expenses"
+          ]
+        },
+        "description": "Generated from cURL: curl --request POST \\\n  --url http://localhost:3000/api/expenses \\\n  --header 'Authorization: Bearer YOUR_JWT_TOKEN_HERE' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"expenseValue\": 15000, \"description\": \"Office desk setup supplies\", \"transactionType\": \"debit\"}'\n"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/expenses",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/expenses",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "expenses"
+          ]
+        },
+        "description": "Generated from cURL: curl --request GET \\\n  --url http://localhost:3000/api/expenses \\\n  --header 'Authorization: Bearer YOUR_JWT_TOKEN_HERE'\n"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/expenses/:id",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/expenses/{{expenseId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "expenses",
+            "{{expenseId}}"
+          ]
+        },
+        "description": "Generated from cURL: curl --request GET \\\n  --url http://localhost:3000/api/expenses/1 \\\n  --header 'Authorization: Bearer YOUR_JWT_TOKEN_HERE'\n"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/expenses/:id",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"expenseValue\": 12500, \"description\": \"Updated desk supplies description\", \"transactionType\": \"debit\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/expenses/{{expenseId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "expenses",
+            "{{expenseId}}"
+          ]
+        },
+        "description": "Generated from cURL: curl --request PUT \\\n  --url http://localhost:3000/api/expenses/1 \\\n  --header 'Authorization: Bearer YOUR_JWT_TOKEN_HERE' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\"expenseValue\": 12500, \"description\": \"Updated desk supplies description\", \"transactionType\": \"debit\"}'\n"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/expenses/:id",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/expenses/{{expenseId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "expenses",
+            "{{expenseId}}"
+          ]
+        },
+        "description": "Generated from cURL: curl --request DELETE \\\n  --url http://localhost:3000/api/expenses/1 \\\n  --header 'Authorization: Bearer YOUR_JWT_TOKEN_HERE'\n"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/user",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "user"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auto_jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
