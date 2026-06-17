@@ -10,7 +10,7 @@ const fetchExpenses = async (req, res) => {
 const addExpense = async (req, res) => {
   const userId = req.user.userId;
   const { expenseValue, description, transactionType } = req.body;
-  if (!expenseValue) {
+  if (expenseValue === null || expenseValue === undefined) {
     throw new AppError("expenseValue Required", 400);
   }
   const expense = await expenseService.addExpense(
@@ -48,4 +48,37 @@ const getExpenseById = async (req, res) => {
     .json({ message: "Expense fetched successfully", expense });
 };
 
-module.exports = { fetchExpenses, addExpense, deleteExpense, getExpenseById };
+const updateExpense = async (req, res) => {
+  const userId = req.user.userId;
+
+  const id = req.params.id;
+  if (!id) {
+    throw new AppError("Id required to update expense", 400);
+  }
+  const { expenseValue, description, transactionType } = req.body;
+  if (expenseValue === null || expenseValue === undefined) {
+    throw new AppError("Expense value required", 400);
+  }
+  const expense = await expenseService.updateExpense(
+    id,
+    expenseValue,
+    description,
+    transactionType || "debit",
+    userId,
+  );
+  res.status(200).json({
+    success: true,
+    message: `Expense with id ${id} updated successfully`,
+    data: {
+      expense,
+    },
+  });
+};
+
+module.exports = {
+  fetchExpenses,
+  addExpense,
+  deleteExpense,
+  getExpenseById,
+  updateExpense,
+};

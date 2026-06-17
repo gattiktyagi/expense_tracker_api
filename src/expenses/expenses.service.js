@@ -22,4 +22,30 @@ const getExpenseById = async (id, userId) => {
   return expense;
 };
 
-module.exports = { fetchExpenses, addExpense, deleteExpense, getExpenseById };
+const updateExpense = async (
+  id,
+  expenseValue,
+  description,
+  transactionType,
+  userId,
+) => {
+  const expense = await expenseRepo.updateExpense(
+    id,
+    expenseValue,
+    description,
+    transactionType,
+    userId,
+  );
+  if (!expense) {
+    throw new AppError("Expense not found", 404);
+  }
+  return expense;
+};
+
+module.exports = {
+  fetchExpenses,
+  addExpense,
+  deleteExpense,
+  getExpenseById,
+  updateExpense,
+};
