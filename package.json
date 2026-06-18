@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "start": "tsx src/server.js",
+    "dev": "nodemon --exec tsx src/server.js",
     "test:api": "wait-on http://localhost:3000/health && newman run postman/collection.json -e postman/env.json -r cli --reporter-cli-no-summary --reporter-cli-no-assertions --reporter-cli-no-success-assertions",
     "test:all": "concurrently -k \"npm start\" \"npm run test:api\""
   },
@@ -22,5 +22,13 @@
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.21.0",
     "wait-on": "^9.0.10"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.9.3",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
   }
 }

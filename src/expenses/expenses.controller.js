@@ -1,5 +1,5 @@
-const expenseService = require("./expenses.service");
-const AppError = require("../utils/AppError");
+const expenseService = require("./expenses.service.js");
+const AppError = require("../utils/AppError.js");
 
 const fetchExpenses = async (req, res) => {
   const userId = req.user.userId;

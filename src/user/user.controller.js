@@ -1,5 +1,5 @@
-const AppError = require("../utils/AppError");
-const userService = require("./user.service");
+const AppError = require("../utils/AppError.js");
+const userService = require("./user.service.js");
 const deleteUser = async (req, res) => {
   const userId = req.user.userId;
   if (!userId) {

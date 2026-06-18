@@ -1,9 +1,9 @@
 const express = require("express");
-const authRoutes = require("./auth/auth.routes");
-const expenseRoutes = require("./expenses/expenses.routes");
-const userRoutes = require("./user/user.routes");
+const authRoutes = require("./auth/auth.routes.js");
+const expenseRoutes = require("./expenses/expenses.routes.js");
+const userRoutes = require("./user/user.routes.js");
 const cors = require("cors");
-const errorHandler = require("./middlewares/error.middleware");
+const errorHandler = require("./middlewares/error.middleware.js");
 
 const app = express();
 

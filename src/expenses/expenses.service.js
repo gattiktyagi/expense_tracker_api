@@ -1,5 +1,5 @@
-const expenseRepo = require("./expenses.repository");
-const AppError = require("../utils/AppError");
+const expenseRepo = require("./expenses.repository.js");
+const AppError = require("../utils/AppError.js");
 
 const fetchExpenses = (userId) => expenseRepo.fetchExpenses(userId);
 

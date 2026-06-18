@@ -1,5 +1,5 @@
-const AppError = require("../utils/AppError");
-const authService = require("./auth.service");
+const AppError = require("../utils/AppError.js");
+const authService = require("./auth.service.js");
 
 const signup = async (req, res) => {
   const { user, email, password } = req.body;
