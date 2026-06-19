@@ -10,9 +10,6 @@ const fetchExpenses = async (req, res) => {
 const addExpense = async (req, res) => {
   const userId = req.user.userId;
   const { expenseValue, description, transactionType } = req.body;
-  if (expenseValue === null || expenseValue === undefined) {
-    throw new AppError("expenseValue Required", 400);
-  }
   const expense = await expenseService.addExpense(
     expenseValue,
     description,
@@ -24,11 +21,8 @@ const addExpense = async (req, res) => {
 };
 
 const deleteExpense = async (req, res) => {
-  const id = req.params.id;
+  const {id} = req.params;
   const userId = req.user.userId;
-  if (!id) {
-    throw new AppError("Expense id required to delete expense", 400);
-  }
   const deletedExpense = await expenseService.deleteExpense(id, userId);
 
   return res
@@ -37,11 +31,8 @@ const deleteExpense = async (req, res) => {
 };
 
 const getExpenseById = async (req, res) => {
-  const id = req.params.id;
+  const {id} = req.params;
   const userId = req.user.userId;
-  if (!id) {
-    throw new AppError("Id required to fetch expense", 400);
-  }
   const expense = await expenseService.getExpenseById(id, userId);
   return res
     .status(200)
@@ -50,15 +41,9 @@ const getExpenseById = async (req, res) => {
 
 const updateExpense = async (req, res) => {
   const userId = req.user.userId;
-
   const id = req.params.id;
-  if (!id) {
-    throw new AppError("Id required to update expense", 400);
-  }
   const { expenseValue, description, transactionType } = req.body;
-  if (expenseValue === null || expenseValue === undefined) {
-    throw new AppError("Expense value required", 400);
-  }
+
   const expense = await expenseService.updateExpense(
     id,
     expenseValue,
