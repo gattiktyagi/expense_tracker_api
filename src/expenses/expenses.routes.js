@@ -4,6 +4,7 @@ const authenticate = require("../middlewares/auth.middleware.js");
 const expenseController = require("./expenses.controller.js");
 const expenseValidator = require("./expenses.validation.js");
 const validate = require("../middlewares/validation.middleware.js");
+const authorize = require("../middlewares/authorize.middleware.js");
 
 router
   .route("/")
@@ -17,6 +18,13 @@ router
     validate(expenseValidator.addExpenseSchema),
     expenseController.addExpense,
   );
+
+router.get('/all',
+    authenticate,
+    authorize("admin"),
+    validate(expenseValidator.fetchExpensesSchema),
+    expenseController.fetchAllExpenses,
+  )
 
 router
   .route("/:id")

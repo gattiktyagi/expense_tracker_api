@@ -28,10 +28,10 @@ const login = async (email, password) => {
   if (!isMatch) {
     throw new AppError("Invalid Credentials", 401);
   }
-  const token = jwt.sign({ userId: user.id, email }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ userId: user.id, role:user.role }, process.env.JWT_SECRET, {
     expiresIn: process.env.TOKEN_EXPIRES_IN || "1h",
   });
-  return { token, user: { id: user.id, email: user.email } };
+  return { token, user: { id: user.id, email: user.email, role:user.role } };
 };
 
 module.exports = { signup, login };

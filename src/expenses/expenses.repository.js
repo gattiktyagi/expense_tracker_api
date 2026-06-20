@@ -57,10 +57,16 @@ const updateExpense = async (
   return expense.rows[0];
 };
 
+const fetchAllExpenses = async () => {
+  const expenses = await pool.query("SELECT * FROM expenses");
+  return expenses.rows;
+};
+
 module.exports = {
   fetchExpenses,
   addExpense,
   deleteExpense,
   fetchExpenseById,
   updateExpense,
+  fetchAllExpenses,
 };

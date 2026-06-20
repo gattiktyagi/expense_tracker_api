@@ -4,6 +4,7 @@ const authenticate = require("../middlewares/auth.middleware.js");
 const userController = require("./user.controller.js");
 const validate = require("../middlewares/validation.middleware.js");
 const userValidation = require("./user.validation.js");
+const authorize=require('../middlewares/authorize.middleware.js');
 
 router.delete(
   "/",

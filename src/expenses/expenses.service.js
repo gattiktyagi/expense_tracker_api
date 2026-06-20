@@ -42,10 +42,13 @@ const updateExpense = async (
   return expense;
 };
 
+const fetchAllExpenses = async () => expenseRepo.fetchAllExpenses();
+
 module.exports = {
   fetchExpenses,
   addExpense,
   deleteExpense,
   getExpenseById,
   updateExpense,
+  fetchAllExpenses,
 };

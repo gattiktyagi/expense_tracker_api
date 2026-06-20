@@ -1,5 +1,6 @@
 const expenseService = require("./expenses.service.js");
 const AppError = require("../utils/AppError.js");
+const { success } = require("zod");
 
 const fetchExpenses = async (req, res) => {
   const userId = req.user.userId;
@@ -21,7 +22,7 @@ const addExpense = async (req, res) => {
 };
 
 const deleteExpense = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const userId = req.user.userId;
   const deletedExpense = await expenseService.deleteExpense(id, userId);
 
@@ -31,7 +32,7 @@ const deleteExpense = async (req, res) => {
 };
 
 const getExpenseById = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const userId = req.user.userId;
   const expense = await expenseService.getExpenseById(id, userId);
   return res
@@ -60,10 +61,21 @@ const updateExpense = async (req, res) => {
   });
 };
 
+const fetchAllExpenses = async (req, res) => {
+  const expenses = await expenseService.fetchAllExpenses();
+  res.status(200).json({
+    success: true,
+    data: {
+      expenses,
+    },
+  });
+};
+
 module.exports = {
   fetchExpenses,
   addExpense,
   deleteExpense,
   getExpenseById,
   updateExpense,
+  fetchAllExpenses,
 };

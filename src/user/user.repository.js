@@ -15,9 +15,10 @@ const findByUser = async (user) => {
 };
 
 const createUser = async (username, email, hashedPassword) => {
+  const role="user";
   const result = await pool.query(
-    "INSERT INTO users (username,email,password_hash) VALUES ($1,$2,$3) returning id, username, email",
-    [username, email, hashedPassword],
+    "INSERT INTO users (username,email,password_hash,role) VALUES ($1,$2,$3,$4) returning id, username, email,role",
+    [username, email, hashedPassword, role],
   );
   return result.rows[0];
 };
