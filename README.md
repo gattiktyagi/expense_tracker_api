@@ -155,6 +155,7 @@ This separation keeps the code maintainable and makes it easier to add features 
 | GET | `/api/expenses/:id` | Get a single expense by ID | Yes |
 | POST | `/api/expenses` | Create a new expense | Yes |
 | DELETE | `/api/expenses/:id` | Delete an expense by ID | Yes |
+| PUT | `/api/expenses/:id` | Update an expense by ID | Yes |
 
 ## Authentication Flow
 
@@ -356,8 +357,6 @@ A user owns multiple expenses, and expense queries should always be scoped to th
 
 ## Learning Focus
 
-This project shows practice in:
-
 - Building REST APIs with Express
 - Organizing backend code into layers
 - Writing SQL queries directly
@@ -366,13 +365,11 @@ This project shows practice in:
 - Protecting routes with middleware
 - Handling errors consistently
 - Structuring a backend application for growth
+- Update expense endpoint: `PUT /api/expenses/:id`
+- Input validation using `express-validator`, `zod`, or `joi`
 
 ## Future Improvements
 
-These are the next concepts worth adding as you keep learning:
-
-- Input validation using `express-validator`, `zod`, or `joi`
-- Update expense endpoint: `PUT /api/expenses/:id`
 - Pagination for `GET /api/expenses`
 - Filtering by date range
 - Search by title or category
